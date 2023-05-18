@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="All Test Suite">
+    <listeners>
+        <listener class-name="Tests.TestComponents.Listeners"></listener>
+    </listeners>
+    <test verbose="1" preserve-order="true" name="Submit Order Test">
+        <classes>
+            <class name="Tests.SubmitOrderTest"></class>
+        </classes>
+    </test>
+    <test verbose="1" preserve-order="true" name="Error Validation Test">
+        <classes>
+            <class name="Tests.ErrorValidationTest"></class>
+        </classes>
+    </test>
+    <test verbose="1" preserve-order="true" name="Add One Product Test">
+        <classes>
+            <class name="Tests.AddOneProductTest"></class>
+        </classes>
+    </test>
+    <test verbose="1" preserve-order="true" name="Add Two Product Test">
+        <classes>
+            <class name="Tests.AddTwoProductsTest"></class>
+        </classes>
+    </test>
+</suite>
