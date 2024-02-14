@@ -1,6 +1,6 @@
-package ionutvescan;
+package ionutvescan.PageObjects;
 
-import ionutvescan.Reusables.ReusableComponents;
+import ionutvescan.ReusableComponents.ReusableComponents;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -18,15 +18,17 @@ public class LandingPage extends ReusableComponents {
     private WebElement acceptCookies;
     @FindBy(linkText = "Parfumuri")
     private WebElement parfumuri;
-    @FindBy(xpath = "//strong[normalize-space()='Parfumuri pentru barbati']")
+    @FindBy(xpath = "//strong[normalize-space()='Parfumuri barbati']")
     private WebElement parfumuriBarbati;
 
     public void goTo(){
         driver.get("https://www.elefant.ro/");
     }
+
     public void acceptCookies(){
         acceptCookies.click();
     }
+
     public ProductPage searchItems(){
         windowScroll(0,200);
         Actions actions = new Actions(driver);

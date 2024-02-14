@@ -3,7 +3,6 @@ package Tests.TestComponents;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import ionutvescan.ResourcesData.ExtentReporterNG;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -17,7 +16,6 @@ public class Listeners extends BaseTest implements ITestListener {
     ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
     @Override
     public void onTestStart(ITestResult result) {
-
         test = extent.createTest(result.getMethod().getMethodName());
         extentTest.set(test);
     }
@@ -37,11 +35,13 @@ public class Listeners extends BaseTest implements ITestListener {
         }
 
         String filePath = null;
+
         try {
             filePath = getScreenshot(result.getMethod().getMethodName(), driver);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e2) {
+            e2.printStackTrace();
         }
+
         extentTest.get().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
     }
 

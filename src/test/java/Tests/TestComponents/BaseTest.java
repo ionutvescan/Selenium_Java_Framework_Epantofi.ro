@@ -3,16 +3,15 @@ package Tests.TestComponents;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import ionutvescan.LandingPage;
+import ionutvescan.PageObjects.LandingPage;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,12 +26,9 @@ public class BaseTest {
     public WebDriver driver;
     public WebDriver initializeDriver() throws IOException {
 
-        String log4jConfPath = System.getProperty("user.dir") + "//src//main//java//Resources//log4j.properties";
-        PropertyConfigurator.configure(log4jConfPath);
-
         Properties properties = new Properties();
         FileInputStream fileInputStream = new FileInputStream(
-                "/Users/Ionut/IdeaProjects/CommerceWebApp/src/main/java/ionutvescan/ResourcesData/GlobalData.properties");
+                "/Users/Ionut/IdeaProjects/CommerceWebApp/src/main/java/ionutvescan/Resources/GlobalData.properties");
         properties.load(fileInputStream);
         String browserName = System.getProperty("browser")!=null ? System.getProperty("browser")
                 : properties.getProperty("browser");
@@ -55,13 +51,14 @@ public class BaseTest {
         return driver;
     }
 
+
     public LandingPage launchApplication() throws IOException {
         driver = initializeDriver();
         LandingPage landingPage = new LandingPage(driver);
         landingPage.goTo();
         return landingPage;
     }
-    @AfterMethod
+    @AfterTest
     public void closeDriver(){
         driver.quit();
     }
@@ -69,8 +66,7 @@ public class BaseTest {
     public List<HashMap<String,String>> getJsonData(String filePath) throws IOException {
         String jsonContent = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
         ObjectMapper mapper = new ObjectMapper();
-        List<HashMap<String,String>> data = mapper.readValue(jsonContent, new TypeReference<List<HashMap<String,String>>>() {
-        });
+        List<HashMap<String,String>> data = mapper.readValue(jsonContent, new TypeReference<>(){});
         return data;
     }
     public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
@@ -78,6 +74,7 @@ public class BaseTest {
         File source = ts.getScreenshotAs(OutputType.FILE);
         File file = new File(System.getProperty("user.dir") + "/reports/" + testCaseName + ".png");
         FileUtils.copyFile(source, file);
-        return System.getProperty("user.dir") + "/reports/" + testCaseName + ".png";
+        String screenshotPath = file.toString().split("reports")[1];
+        return ".\\" + screenshotPath;
     }
 }

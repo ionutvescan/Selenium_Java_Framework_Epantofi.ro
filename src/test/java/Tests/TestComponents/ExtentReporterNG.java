@@ -1,4 +1,4 @@
-package ionutvescan.ResourcesData;
+package Tests.TestComponents;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;

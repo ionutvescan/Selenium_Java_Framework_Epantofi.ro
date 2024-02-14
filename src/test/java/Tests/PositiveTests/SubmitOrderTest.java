@@ -1,11 +1,11 @@
-package Tests;
+package Tests.PositiveTests;
 
 import Tests.TestComponents.BaseTest;
 import Tests.TestComponents.Retry;
-import ionutvescan.CartPage;
-import ionutvescan.CheckoutPage;
-import ionutvescan.LandingPage;
-import ionutvescan.ProductPage;
+import ionutvescan.PageObjects.CartPage;
+import ionutvescan.PageObjects.CheckoutPage;
+import ionutvescan.PageObjects.LandingPage;
+import ionutvescan.PageObjects.ProductPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SubmitOrderTest extends BaseTest{
-    @Test(dataProvider = "getData", retryAnalyzer = Retry.class)
+    @Test(dataProvider = "getData") //retryAnalyzer = Retry.class
     public void submitOrder(HashMap<String,String> input) throws IOException, InterruptedException {
         LandingPage landingPage = launchApplication();
         landingPage.acceptCookies();
@@ -27,13 +27,14 @@ public class SubmitOrderTest extends BaseTest{
         CheckoutPage checkoutPage = cartPage.goToCheckout();
         checkoutPage.selectDeliveryAndBillingInfo(input.get("phone"));
         String message = checkoutPage.getCardMessage();
-        Assert.assertTrue(message.equalsIgnoreCase("Vă rugăm să introduceți datele cardului de credit în pagina următoare."));
+        Assert.assertTrue(message.equalsIgnoreCase("Plasează Comanda"));
         checkoutPage.placeOrder();
     }
 
     @DataProvider
     public Object[][] getData() throws IOException {
-        List<HashMap<String,String>> data = getJsonData("/Users/Ionut/IdeaProjects/CommerceWebApp/src/test/java/Tests/Data/AddOneProductData.json");
+        List<HashMap<String,String>> data = getJsonData(
+                "/Users/Ionut/IdeaProjects/CommerceWebApp/src/test/java/Tests/Data/AddOneProductData.json");
         return new Object[][]{{data.get(0)},{data.get(1)}};
     }
 }

@@ -1,6 +1,6 @@
-package ionutvescan;
+package ionutvescan.PageObjects;
 
-import ionutvescan.Reusables.ReusableComponents;
+import ionutvescan.ReusableComponents.ReusableComponents;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -36,7 +36,7 @@ public class CheckoutPage extends ReusableComponents {
     private WebElement address;
     @FindBy(css = "div[id='continue-checkout'] button")
     private WebElement continueCheckout;
-    @FindBy(css = "p[class='text-info']")
+    @FindBy(css = "div[class='col-xs-8'] h1")
     private WebElement message;
     @FindBy(css = "label[for='terms-conditions-agree']")
     private WebElement acceptTerms;

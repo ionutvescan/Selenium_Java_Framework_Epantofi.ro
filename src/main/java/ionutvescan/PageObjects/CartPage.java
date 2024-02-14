@@ -1,6 +1,6 @@
-package ionutvescan;
+package ionutvescan.PageObjects;
 
-import ionutvescan.Reusables.ReusableComponents;
+import ionutvescan.ReusableComponents.ReusableComponents;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

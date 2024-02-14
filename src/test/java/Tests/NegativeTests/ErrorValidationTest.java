@@ -1,11 +1,11 @@
-package Tests;
+package Tests.NegativeTests;
 
 import Tests.TestComponents.BaseTest;
 import Tests.TestComponents.Retry;
-import ionutvescan.CartPage;
-import ionutvescan.CheckoutPage;
-import ionutvescan.LandingPage;
-import ionutvescan.ProductPage;
+import ionutvescan.PageObjects.CartPage;
+import ionutvescan.PageObjects.CheckoutPage;
+import ionutvescan.PageObjects.LandingPage;
+import ionutvescan.PageObjects.ProductPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -28,7 +28,8 @@ public class ErrorValidationTest extends BaseTest {
 
     @DataProvider
     public Object[][] getData() throws IOException {
-        List<HashMap<String, String>> data = getJsonData("/Users/Ionut/IdeaProjects/CommerceWebApp/src/test/java/Tests/Data/AddOneProductErrorData.json");
+        List<HashMap<String, String>> data = getJsonData(
+                "/Users/Ionut/IdeaProjects/CommerceWebApp/src/test/java/Tests/Data/AddOneProductErrorData.json");
         return new Object[][]{{data.get(0)}};
     }
 
@@ -44,13 +45,14 @@ public class ErrorValidationTest extends BaseTest {
         CheckoutPage checkoutPage = cartPage.goToCheckout();
         checkoutPage.selectDeliveryAndBillingInfo(input.get("phone"));
         String message = checkoutPage.getCardMessage();
-        Assert.assertTrue(message.equalsIgnoreCase("Vă rugăm să introduceți datele cardului de credit în pagina următoare."));
+        Assert.assertTrue(message.equalsIgnoreCase("Plasează Comanda"));
         checkoutPage.placeOrder();
 
     }
     @DataProvider
     public Object[][] getData1() throws IOException {
-        List<HashMap<String, String>> data = getJsonData("/Users/Ionut/IdeaProjects/CommerceWebApp/src/test/java/Tests/Data/SubmitOrderError.json");
+        List<HashMap<String, String>> data = getJsonData(
+                "/Users/Ionut/IdeaProjects/CommerceWebApp/src/test/java/Tests/Data/SubmitOrderError.json");
         return new Object[][]{{data.get(0)}};
     }
 }

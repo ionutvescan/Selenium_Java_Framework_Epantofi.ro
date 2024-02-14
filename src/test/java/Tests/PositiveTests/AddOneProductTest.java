@@ -1,10 +1,10 @@
-package Tests;
+package Tests.PositiveTests;
 
 import Tests.TestComponents.BaseTest;
 import Tests.TestComponents.Retry;
-import ionutvescan.CartPage;
-import ionutvescan.LandingPage;
-import ionutvescan.ProductPage;
+import ionutvescan.PageObjects.CartPage;
+import ionutvescan.PageObjects.LandingPage;
+import ionutvescan.PageObjects.ProductPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class AddOneProductTest extends BaseTest{
-    @Test(dataProvider = "getData", retryAnalyzer = Retry.class)
+    @Test(dataProvider = "getData") //retryAnalyzer = Retry.class
     public void addProductToCart(HashMap<String,String> input) throws IOException{
         LandingPage landingPage = launchApplication();
         landingPage.acceptCookies();
@@ -27,7 +27,8 @@ public class AddOneProductTest extends BaseTest{
 
     @DataProvider
     public Object[][] getData() throws IOException {
-        List<HashMap<String,String>> data = getJsonData("/Users/Ionut/IdeaProjects/CommerceWebApp/src/test/java/Tests/Data/AddOneProductData.json");
+        List<HashMap<String,String>> data = getJsonData(
+                "/Users/Ionut/IdeaProjects/CommerceWebApp/src/test/java/Tests/Data/AddOneProductData.json");
         return new Object[][]{{data.get(0)},{data.get(1)}};
     }
 }

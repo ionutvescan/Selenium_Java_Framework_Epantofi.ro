@@ -5,9 +5,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import ionutvescan.CartPage;
-import ionutvescan.LandingPage;
-import ionutvescan.ProductPage;
+import ionutvescan.PageObjects.CartPage;
+import ionutvescan.PageObjects.LandingPage;
+import ionutvescan.PageObjects.ProductPage;
 import org.testng.Assert;
 
 import java.io.IOException;

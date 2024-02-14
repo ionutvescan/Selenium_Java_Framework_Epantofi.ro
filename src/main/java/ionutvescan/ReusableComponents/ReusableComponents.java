@@ -1,4 +1,4 @@
-package ionutvescan.Reusables;
+package ionutvescan.ReusableComponents;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
