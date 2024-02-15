@@ -25,6 +25,7 @@ public class ProductPage extends ReusableComponents {
     private WebElement goToCart;
     @FindBy(xpath = "//span[@class='products pull-right']")
     private WebElement numberOfProducts;
+
     private final By products = By.cssSelector("div[class='product-detail']");
     private final By addProduct = By.cssSelector("a[class='product-title']");
     private final By cartBtn = By.cssSelector("a[class*='btn-lg']");
