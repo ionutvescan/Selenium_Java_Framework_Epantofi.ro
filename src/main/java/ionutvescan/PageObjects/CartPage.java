@@ -1,21 +1,19 @@
 package ionutvescan.PageObjects;
 
-import ionutvescan.ReusableComponents.ReusableComponents;
+import ionutvescan.ReusableComponents.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class CartPage extends ReusableComponents {
+public class CartPage extends BasePage {
     WebDriver driver;
 
     public CartPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
 
     @FindBy(css = "a[class='product-desc']")
@@ -27,7 +25,8 @@ public class CartPage extends ReusableComponents {
     @FindBy(xpath = "//a[@class='btn btn-primary btn-block']")
     private WebElement continueWithoutAccount;
 
-    By pickedProducts = By.cssSelector("a[class='product-desc']");
+    private final By continueBtn = By.xpath("//a[@class='btn btn-primary btn-block']");
+    private final By pickedProducts = By.cssSelector("a[class='product-desc']");
 
     public Boolean verifyProductDisplay(String productName) {
         Boolean match = pickedProduct.getText().equalsIgnoreCase(productName);
@@ -54,9 +53,9 @@ public class CartPage extends ReusableComponents {
 
     public CheckoutPage goToCheckout(){
         checkout.click();
+        waitForElementToAppear(continueBtn);
         continueWithoutAccount.click();
-        CheckoutPage checkoutPage = new CheckoutPage(driver);
-        return checkoutPage;
+        return new CheckoutPage(driver);
     }
 }
 

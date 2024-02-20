@@ -1,11 +1,11 @@
 package ionutvescan.PageObjects;
 
-import ionutvescan.ReusableComponents.ReusableComponents;
+import ionutvescan.ReusableComponents.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 
@@ -14,12 +14,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-public class LandingPage extends ReusableComponents {
+public class LandingPage extends BasePage {
     WebDriver driver;
     public LandingPage(WebDriver driver){
         super(driver);
         this.driver = driver;
-        PageFactory.initElements(driver,this);
     }
     @FindBy(id="CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")
     private WebElement acceptCookies;
@@ -29,6 +28,10 @@ public class LandingPage extends ReusableComponents {
     private WebElement parfumuriBarbati;
     @FindBy(xpath = "//li[contains(@id, 'mobileCat')] / a")
     private List<WebElement> categories;
+
+//    @FindBy(css = ".main-navigation-level1-item a strong")
+//    private List<WebElement> subcategories;
+
     @FindBy(xpath = "//ul[@id = 'mobileCat-Carte'] / li / ul / li / a")
     private List<WebElement> bookCategorylinks;
     @FindBy(xpath = "//ul[@id = 'mobileCat-CarteStraina'] / li / ul / li / a")
@@ -48,33 +51,34 @@ public class LandingPage extends ReusableComponents {
     @FindBy(xpath = "//ul[@id = 'mobileCat-Nutritie'] / li / ul / li / a")
     private List<WebElement> nutritionCategorylinks;
 
+    private final By cookies = By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll");
+
     public void goTo(){
         driver.get("https://www.elefant.ro/");
     }
 
-    public void acceptCookies(){
+    public void acceptCookies() {
+        waitForElementToAppear(cookies);
         acceptCookies.click();
     }
 
-    public ProductPage searchItems(){
-        windowScroll(0,200);
+    public ProductPage searchManPerfumes(){
         Actions actions = new Actions(driver);
         actions.moveToElement(parfumuri).build().perform();
         parfumuriBarbati.click();
-        ProductPage productPage = new ProductPage(driver);
-        return productPage;
+        return new ProductPage(driver);
     }
 
     public void selectCategory(String categoryName) {
         Actions actions = new Actions(driver);
-        for (WebElement category : categories) {
-            if (category.getText().equalsIgnoreCase(categoryName)) {
+        for(WebElement category : categories){
+            if(category.getText().equalsIgnoreCase(categoryName)){
                 actions.moveToElement(category).build().perform();
             }
         }
     }
 
-    public void verifyParfumesCategoryLinks(String categoryName) throws IOException {
+    public void verifyCategoryLinks(String categoryName) throws IOException {
         switch (categoryName){
             case "Carte" :
                 verifyBrokenLinks(bookCategorylinks);

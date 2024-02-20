@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,14 +51,14 @@ public class BaseTest {
         return driver;
     }
 
-
     public LandingPage launchApplication() throws IOException {
         driver = initializeDriver();
         LandingPage landingPage = new LandingPage(driver);
         landingPage.goTo();
         return landingPage;
     }
-    @AfterTest
+
+    @AfterMethod
     public void closeDriver(){
         driver.quit();
     }
@@ -66,9 +66,9 @@ public class BaseTest {
     public List<HashMap<String,String>> getJsonData(String filePath) throws IOException {
         String jsonContent = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
         ObjectMapper mapper = new ObjectMapper();
-        List<HashMap<String,String>> data = mapper.readValue(jsonContent, new TypeReference<>(){});
-        return data;
+        return mapper.readValue(jsonContent, new TypeReference<>(){});
     }
+
     public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);

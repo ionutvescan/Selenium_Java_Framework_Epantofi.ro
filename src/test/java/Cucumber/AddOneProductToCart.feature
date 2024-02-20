@@ -8,9 +8,9 @@ Feature: Add product to cart on e-commerce website
     Then Go to cart page and verify the <productName>
 
     Examples:
-    |productName                                                 |
-    |Apa de toaleta Versace Eros, 100 ml, pentru barbati         |
-    |Apa de parfum Christian Dior Sauvage, 100 ml, pentru barbati|
+    |productName                                                    |
+    |Apa de parfum Lattafa Ramz Silver, 100 ml, pentru barbati      |
+    |Apa de toaleta Paco Rabanne Ultraviolet, 100 ml, pentru barbati|
 
   Scenario Outline: Positive Test of adding 2 products to cartPage
     When Go to the productPage
@@ -19,6 +19,6 @@ Feature: Add product to cart on e-commerce website
     Then Go to cartPage and verify the display of the <firstProductName> and the <secondProductName>
 
     Examples:
-      |firstProductName                                            | secondProductName                                 |
-      |Apa de toaleta Versace Eros, 100 ml, pentru barbati         |Apa de toaleta Versace Eros, 200 ml, pentru barbati|
-      |Apa de parfum Christian Dior Sauvage, 100 ml, pentru barbati|Apa de toaleta Paco Rabanne Paco, 100 ml, Unisex   |
+      |firstProductName                                               | secondProductName                                                          |
+      |Apa de parfum Lattafa Ramz Silver, 100 ml, pentru barbati      |Apa de parfum Nino Cerruti 1881 Signature Pour Homme, 100 ml, pentru barbati|
+      |Apa de toaleta Paco Rabanne Ultraviolet, 100 ml, pentru barbati|Apa de toaleta Paco Rabanne Ultraviolet, 100 ml, pentru barbati             |

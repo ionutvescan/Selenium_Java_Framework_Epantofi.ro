@@ -6,24 +6,34 @@
         <listener class-name = "Tests.TestComponents.Listeners"/>
     </listeners>
 
-    <test verbose="1" preserve-order="true" name="Submit Order Test">
+    <test verbose="1" preserve-order="true" name="Landing Page Tests">
         <classes>
-            <class name="Tests.PositiveTests.SubmitOrderTest"/>
+            <class name="Tests.PositiveTests.LandingPageTests"/>
         </classes>
     </test>
-    <test verbose="1" preserve-order="true" name="Error Validation Test">
+
+    <test verbose="1" preserve-order="true" name="Cart Page Tests">
         <classes>
-            <class name="Tests.NegativeTests.ErrorValidationTest"/>
+            <class name="Tests.PositiveTests.CartPageTests"/>
         </classes>
     </test>
-    <test verbose="1" preserve-order="true" name="Add One Product Test">
+
+    <test verbose="1" preserve-order="true" name="Checkout Page Tests">
         <classes>
-            <class name="Tests.PositiveTests.AddOneProductTest"/>
+            <class name="Tests.PositiveTests.CheckoutPageTests"/>
         </classes>
     </test>
-    <test verbose="1" preserve-order="true" name="Add Two Product Test">
+
+    <test verbose="1" preserve-order="true" name="Error Validation Card Page Tests">
         <classes>
-            <class name="Tests.PositiveTests.AddTwoProductsTest"/>
+            <class name="Tests.NegativeTests.ErrorValidationCartPageTests"/>
         </classes>
     </test>
+
+    <test verbose="1" preserve-order="true" name="Error Validation Checkout Page Tests">
+        <classes>
+            <class name="Tests.NegativeTests.ErrorValidationCheckoutPageTests"/>
+        </classes>
+    </test>
+
 </suite>

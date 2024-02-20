@@ -1,20 +1,18 @@
 package ionutvescan.PageObjects;
 
-import ionutvescan.ReusableComponents.ReusableComponents;
+import ionutvescan.ReusableComponents.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class ProductPage extends ReusableComponents {
+public class ProductPage extends BasePage {
     WebDriver driver;
     public ProductPage(WebDriver driver){
         super(driver);
         this.driver=driver;
-        PageFactory.initElements(driver, this);
     }
 
     @FindBy(css = "div[class='product-detail']")
@@ -25,6 +23,11 @@ public class ProductPage extends ReusableComponents {
     private WebElement goToCart;
     @FindBy(xpath = "//span[@class='products pull-right']")
     private WebElement numberOfProducts;
+
+//    @FindBy(css = ".product-list.row.js-productlist .current-price")
+//    private List<WebElement> currentPrices;
+//    @FindBy(css = "a[data-testing-id = 'filter-link-[100.0 TO 200.0]'] span")
+//    private WebElement checkbox100_200Price;
 
     private final By products = By.cssSelector("div[class='product-detail']");
     private final By addProduct = By.cssSelector("a[class='product-title']");
@@ -51,6 +54,7 @@ public class ProductPage extends ReusableComponents {
         addToCart.click();
         driver.navigate().back();
         waitForElementToAppear(products);
+
         WebElement secondProduct = getProductByName(secondProductName);
         secondProduct.findElement(addProduct).click();
         addToCart.click();
@@ -62,7 +66,6 @@ public class ProductPage extends ReusableComponents {
 
     public CartPage goToCartPage(){
         goToCart.click();
-        CartPage cartPage = new CartPage(driver);
-        return cartPage;
+        return new CartPage(driver);
     }
 }

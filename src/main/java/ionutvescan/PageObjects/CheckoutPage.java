@@ -1,24 +1,22 @@
 package ionutvescan.PageObjects;
 
-import ionutvescan.ReusableComponents.ReusableComponents;
+import ionutvescan.ReusableComponents.BasePage;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
 import java.io.IOException;
 
-public class CheckoutPage extends ReusableComponents {
+public class CheckoutPage extends BasePage {
     WebDriver driver;
     public CheckoutPage(WebDriver driver){
         super(driver);
         this.driver=driver;
-        PageFactory.initElements(driver,this);
     }
     @FindBy(id = "email_Email")
     private WebElement email;

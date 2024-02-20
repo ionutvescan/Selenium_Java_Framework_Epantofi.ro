@@ -22,7 +22,7 @@ public class AddProductStepDefinition extends BaseTest {
     @When("Go to the productPage")
     public void Go_to_the_productPage()
     {
-        landingPage.searchItems();
+        landingPage.searchManPerfumes();
     }
     @Then("^Add the (.+) to cart$")
     public void add_the_product_to_cart(String productName){

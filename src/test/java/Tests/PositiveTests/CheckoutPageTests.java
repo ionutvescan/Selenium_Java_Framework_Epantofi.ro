@@ -14,12 +14,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-public class SubmitOrderTest extends BaseTest{
-    @Test(dataProvider = "getData") //retryAnalyzer = Retry.class
+public class CheckoutPageTests extends BaseTest{
+    @Test(dataProvider = "getData", retryAnalyzer = Retry.class)
     public void submitOrder(HashMap<String,String> input) throws IOException, InterruptedException {
         LandingPage landingPage = launchApplication();
         landingPage.acceptCookies();
-        ProductPage productPage = landingPage.searchItems();
+        ProductPage productPage = landingPage.searchManPerfumes();
         productPage.add1ProductToCart(input.get("productName"));
         CartPage cartPage = productPage.goToCartPage();
         Boolean match = cartPage.verifyProductDisplay(input.get("productName"));
