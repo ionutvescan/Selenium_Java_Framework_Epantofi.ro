@@ -29,9 +29,6 @@ public class LandingPage extends BasePage {
     @FindBy(xpath = "//li[contains(@id, 'mobileCat')] / a")
     private List<WebElement> categories;
 
-//    @FindBy(css = ".main-navigation-level1-item a strong")
-//    private List<WebElement> subcategories;
-
     @FindBy(xpath = "//ul[@id = 'mobileCat-Carte'] / li / ul / li / a")
     private List<WebElement> bookCategorylinks;
     @FindBy(xpath = "//ul[@id = 'mobileCat-CarteStraina'] / li / ul / li / a")

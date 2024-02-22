@@ -22,6 +22,6 @@ public class LandingPageTests extends BaseTest {
     public Object[][] getData() throws IOException {
         List<HashMap<String, String>> data = getJsonData(
                 "C:\\Users\\Ionut\\IdeaProjects\\CommerceWebApp\\src\\test\\java\\Tests\\Data\\Categories.json");
-        return new Object[][] {{data.get(0)}};
+        return new Object[][] {{data.get(2)}};
     }
 }
